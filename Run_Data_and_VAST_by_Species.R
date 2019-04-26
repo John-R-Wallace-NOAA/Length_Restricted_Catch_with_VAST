@@ -1,20 +1,13 @@
 
 # Windows
-  source("W:/ALL_USR/JRW/Assessment/WCGBTS Juvenile Species Habitat/VAST.Length.Restricted.Catch.R")
-  setwd("W:/ALL_USR/JRW/Assessment/WCGBTS Juvenile Species Habitat")
+  JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
+  # setwd("W:/ALL_USR/JRW/Assessment/WCGBTS Juvenile Species Habitat")
 
 # Linux
-  # Move a current copy VAST.Length.Restricted.Catch.R onto Tantalus
   library(JRWToolBox)
   Linux.First() # **** Answer prompts before moving on ****
   
   source("VAST.Length.Restricted.Catch.R")
-
-
-
-# Do I need to worry about allAgesBubble? On 2 or so species  I have it as TRUE ?
-# Dover sole: allAgesBubble = YRUE,  Extra.Group.Size = c(1, 2, 2)	# Mis-spelled TRUE - so wanted or not??????????????????		 
-# longspine thornyhead: allAgesBubble = TRUE
 
 
 spList <- list()
@@ -32,12 +25,9 @@ spList[[11]] <- list(SP = 'longspine thornyhead',  LenMaxAges = c(5, 6, 7), LatM
 spList[[12]] <- list(SP = 'darkblotched rockfish',  LenMaxAges = c(9, 15), LatMax = 48.5, LatMin = 37.5, DepMin = 80, DepMax = 240) # Lat: 37.8 - 48.5; North of San Fran.
 spList[[13]] <- list(SP = 'splitnose rockfish',  LenMaxAges = c(5, 10), LatMax = 48.5, LatMin = 32.5, DepMin = 65, DepMax = 460) # # Lat: 32.5 - 48.5; Near Mex. border
 
+spList
 
-# spList
-
-# allAgesBubble = TRUE, Extra.Group.Size = 20
-
-# Now have 2018 data, so no need for: dupYears = 2012 for now
+# Now have 2018 data, so no need for: dupYears = 2012 (until early in 2021)
 
 DATA <- c(TRUE, FALSE)[2]
 
@@ -58,7 +48,7 @@ DATA <- c(TRUE, FALSE)[2]
 }
 
 
-# See page 10 of the VAST manual for information on rho options 
+# See page 10 of the VAST manual for information on rho options:
  
 JRWToolBox::gitAFile("https://github.com/James-Thorson/VAST/blob/master/manual/VAST_model_structure.pdf", "pdf")
   
