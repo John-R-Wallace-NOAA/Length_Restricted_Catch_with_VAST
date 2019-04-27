@@ -1,11 +1,13 @@
-
+{
+   
+   
 # Windows
    library(JRWToolBox)
    # setwd("W:/ALL_USR/JRW/Assessment/WCGBTS Juvenile Species Habitat")
 
 # Linux
-  library(JRWToolBox)
-  Linux.First() # **** Answer prompts before moving on ****
+   library(JRWToolBox)
+   Linux.First() # **** Answer prompts before moving on ****
   
 JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
 
@@ -45,10 +47,12 @@ DATA <- c(TRUE, FALSE)[2]
    }
  
 }
-
+   
 
 # See page 10 of the VAST manual for information on rho options:
  
 JRWToolBox::gitAFile("https://github.com/James-Thorson/VAST/blob/master/manual/VAST_model_structure.pdf", "pdf")
   
- 
+
+   
+}
