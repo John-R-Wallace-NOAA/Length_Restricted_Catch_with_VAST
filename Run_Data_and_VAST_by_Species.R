@@ -1,6 +1,4 @@
-{
-   
-   
+
 # Windows
    library(JRWToolBox)
    # setwd("W:/ALL_USR/JRW/Assessment/WCGBTS Juvenile Species Habitat")
@@ -53,6 +51,3 @@ DATA <- c(TRUE, FALSE)[2]
  
 JRWToolBox::gitAFile("https://github.com/James-Thorson/VAST/blob/master/manual/VAST_model_structure.pdf", "pdf")
   
-
-   
-}
