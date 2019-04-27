@@ -1,14 +1,13 @@
 
 # Windows
-  JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
-  # setwd("W:/ALL_USR/JRW/Assessment/WCGBTS Juvenile Species Habitat")
+   library(JRWToolBox)
+   # setwd("W:/ALL_USR/JRW/Assessment/WCGBTS Juvenile Species Habitat")
 
 # Linux
   library(JRWToolBox)
   Linux.First() # **** Answer prompts before moving on ****
   
-  source("VAST.Length.Restricted.Catch.R")
-
+JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
 
 spList <- list()
 spList[[1]] <- list(SP = 'petrale sole', LenMaxAges = c(17, 21), LatMax = 48.3, LatMin = 33.8, DepMin = 50, DepMax = 200)  # Lat: 33.8 - 48.3; Near Mex. border
