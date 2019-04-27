@@ -26,6 +26,7 @@ spList[[13]] <- list(SP = 'splitnose rockfish',  LenMaxAges = c(5, 10), LatMax =
 
 spList
 
+
 # Now have 2018 data, so no need for: dupYears = 2012 (until early in 2021)
 
 DATA <- c(TRUE, FALSE)[2]
