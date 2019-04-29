@@ -453,13 +453,14 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
       ))
      
            
-      FieldConfig = c(Omega1=1, Epsilon1=1, Omega2=1, Epsilon2=1) # 1=Presence-absence; 2=Density given presence; #Epsilon=Spatio-temporal; #Omega=Spatial
-                                                       # 0 is off, "AR1" is an AR1 process, and >0 is the number of elements in a factor-analysis covariance
-      RhoConfig = c(Beta1=rhoConfig, Beta2=rhoConfig, Epsilon1=0, Epsilon2=0) # Structure for beta or epsilon over time: 0=None (default); 1=WhiteNoise; 2=RandomWalk; 3=Constant
-                                                       # 4: each year as random following AR1 process
-         # Can all the vessels in logbook data be treated as random variables??                                                  
-      OverdispersionConfig = c("Delta1"=1, "Delta2"=1) # Turn on vessel effects for both components: eta1 is encounter probability, eta2 is positive catch rates, 
-                                                       # where 0 is off, "AR1" is an AR1 process, and >0 is the number of elements in a factor-analysis covariance 
+      FieldConfig = c(Omega1=1, Epsilon1=1, Omega2=1, Epsilon2=1) #  Where Omega refers to spatial variation, Epsilon refers to spatio-temporal variation, Omega1 refers to variation in
+         # encounter probability, and Omega2 refers to variation in positive catch rates, where 0 is off, "AR1" is an AR1 process, and >0 is the number of elements in a factor-analysis covariance
+      RhoConfig = c(Beta1=rhoConfig, Beta2=rhoConfig, Epsilon1=0, Epsilon2=0) # OPTIONAL, vector of form c("Beta1"=0,"Beta2"=0,"Epsilon1"=0,"Epsilon2"=0) specifying whether either intercepts 
+         # (Beta1 and Beta2) or spatio-temporal variation (Epsilon1 and Epsilon2) is structured among time intervals (0: each year as fixed effect; 1: each year as random following IID distribution;
+         # 2: each year as random following a random walk; 3: constant among years as fixed effect; 4: each year as random following AR1 process)
+                                                 
+      OverdispersionConfig = c("Delta1"=1, "Delta2"=1) # OPTIONAL, a vector of format c("eta1"=0, "eta2"="AR1") governing any correlated overdispersion among categories for each level of v_i, 
+         # where eta1 is for encounter probability, and eta2 is for positive catch rates, where 0 is off, "AR1" is an AR1 process, and >0 is the number of elements in a factor-analysis covariance
          
          # See the help for ?make_data() in R and the VAST manual on GitHub
          # Matrix with two columns where first column specifies the distribution for positive catch rates, and second element specifies the functional form for encounter probabilities
@@ -467,7 +468,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
          # ObsModel = c(2, 0)  # Gamma example: 0=normal (log-link); 1=lognormal; 2=gamma; 4=ZANB; 5=ZINB; 11=lognormal-mixture; 12=gamma-mixture
          # ******** ObsModel[2] = 1 # Poisson-link function that approximates a Tweedie distribution was needed for the Petrale Winter fishery logbook data
          #                            Alternative delta-model using log-link for numbers-density and log-link for biomass per number (see the manual)    
-      ObsModel = c(2,1)  # Poisson-link function set with a Gamma model for positive catch and binominal errors for the presence/absence
+      ObsModel = c(2,1)  # Poisson-link functions with a Gamma model for positive catch and binominal errors for the presence/absence
          # ********  ObsModel[2] = 2
          # ObsModel = c(10, 2) # 10 = Tweedie distribution; 2 = Link function for a [true] Tweedie distribution, necessary for ObsModel[1]=8 or ObsModel[1]=10
          # ObsModel = c( 8, 2) #  8 = Compound-Poisson-Gamma
@@ -546,9 +547,10 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
       gc()
       setwd(DateFile)
       sink("TMB_Output.txt")
-      # Opt = TMBhelper::Optimize( obj=Obj, lower=TmbList$Lower, upper=TmbList$Upper, getsd=TRUE, savedir=DateFile, bias.correct=FALSE, bias.correct.control = list(sd = TRUE, nsplit = 5))
+         # Not using the bias correction here since we are more interested in the areas than the index (J. Thorson, pers. comm.).
+         # Opt = TMBhelper::Optimize( obj=Obj, lower=TmbList$Lower, upper=TmbList$Upper, getsd=TRUE, savedir=DateFile, bias.correct=FALSE, bias.correct.control = list(sd = TRUE, nsplit = 5))
          # Removed the parameter limits used by nlminb() since previously one parameter was hitting a bound
-         Opt = TMBhelper::Optimize( obj = Obj, getsd = TRUE, bias.correct = FALSE, bias.correct.control = list(sd = TRUE, nsplit = 5))
+      Opt = TMBhelper::Optimize( obj = Obj, getsd = TRUE, bias.correct = FALSE, bias.correct.control = list(sd = TRUE, nsplit = 5))
          # Opt = TMBhelper::Optimize( obj=Obj, lower=TmbList[["Lower"]], upper=TmbList[["Upper"]], getsd=TRUE, savedir=DateFile, 
          #                           bias.correct=TRUE, bias.correct.control=list(sd=FALSE, split=NULL, nsplit=5, vars_to_correct="Index_cyl"))
       sink()  
@@ -567,9 +569,6 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
                        "The model is likely not converged (the critera is a pd Hess and the max_gradient < 0.0001)") }, "The model is definitely not converged")
       print(OptRnd)
       capture.output(OptRnd, file = file.path(DateFile, "parameter_estimates.txt"))
-                
-         # Range Raw1 and Raw2 should be inside of min and max distance of between knot locations
-         r(sort(c(Range_raw1 = Report$Range_raw1, Range_raw2 = Report$Range_raw2, minDist = min(dist( Spatial_List$loc_x )), maxDist = max(dist( Spatial_List$loc_x )))))
             
       # Create MapDetails_List
          MapDetails_List = FishStatsUtils::make_map_info( Region = Region, NN_Extrap = Spatial_List$PolygonList$NN_Extrap, Extrapolation_List = Extrapolation_List ) # Make this list before the save!!!!!
@@ -579,14 +578,16 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
       sink(paste0(DateFile, "Final_Convergence_Results.txt"))
          cat("\nnlminb() convergence (Zero indicates successful convergence):", Opt$convergence, "\n\nnlminb() message:", Opt$message, "\n\nnlminb() pdHess:", Opt$SD$pdHess, "\n\nAIC:", Opt$AIC, "\n\n")
          cat("\nRange Raw1 and Raw2 should be inside of min and max distance of between knot locations\n\n")
+         # Range Raw1 and Raw2 should be inside of min and max distance of between knot locations (J. Thorson, pers. comm.)
          print(r(sort(c(Range_raw1 = Report$Range_raw1, Range_raw2 = Report$Range_raw2, minDist = min(dist( Spatial_List$loc_x )), maxDist = max(dist( Spatial_List$loc_x ))))))
       sink()
      
-         setwd(HomeDir)
+      setwd(HomeDir)
       
       # Save the VAST run - early save - final save right at the end!
-        save(list = c(ls(), names(.GlobalEnv)), file = paste0(DateFile, "Image.RData")) # Save files inside the function also!!!!!!
-     } # End run VAST
+      save(list = c(ls(), names(.GlobalEnv)), file = paste0(DateFile, "Image.RData")) # Save files inside the function also!!!!!!
+      
+     } # End runVAST
       
      if(runDiagnostics) {
           #######################
@@ -658,7 +659,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
           # save(list = ls(), file = paste0(DateFile, "Dump.RData"))  
           
           #####################################################
-          #  WCGBTS VAST results plotted with raw data Bubbles 
+          #  WCGBTS VAST results plotted with raw data bubbles 
           #####################################################
           
           # ------ First, prepare the VAST species results as reflected in the groups of underlying grid points associated with each knot.  -------
@@ -885,9 +886,10 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
          # Save it all, now with diagnostics!
          save(list = c(ls(), names(.GlobalEnv)), file = paste0(DateFile, "Image.RData")) # Save files inside the function also!!!!!!
          
-     } # End run diagnostics 
+     } # End runDiagnostics 
 
 }
                       
                       
+
 
