@@ -27,9 +27,12 @@ spList[[13]] <- list(SP = 'splitnose rockfish',  LenMaxAges = c(5, 10), LatMax =
 spList
 
 
+# Make a first pass with DATA = TRUE to download each species' dataset and to interactively remove weight outliers, the edited raw data is saved to the working directory.
+# Make a second pass with DATA = FALSE to run VAST on each species in turn. Subsets of the runs can be run on multiple R sessions (move the saved species datasets to the appropriate R sessions).
+
 # Now have 2018 data, so no need for: dupYears = 2012 (until early in 2021)
 
-DATA <- c(TRUE, FALSE)[2]
+DATA <- c(TRUE, FALSE)[1]
 
 # Rho: Structure for beta (only) over time: 0=None (default); 1=WhiteNoise; 2=RandomWalk; 3=Constant intercept; 4=Autoregressive, each year as random following AR1 process
  for ( j in c(0,3)) {  # j is rho
@@ -52,3 +55,4 @@ DATA <- c(TRUE, FALSE)[2]
  
 JRWToolBox::gitAFile("https://github.com/James-Thorson/VAST/blob/master/manual/VAST_model_structure.pdf", "pdf")
   
+
