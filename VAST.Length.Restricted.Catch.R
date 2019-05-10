@@ -457,7 +457,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
       OverdispersionConfig = c("Delta1"=1, "Delta2"=1) # OPTIONAL, a vector of format c("eta1"=0, "eta2"="AR1") governing any correlated overdispersion among categories for each level of v_i, 
          # where eta1 is for encounter probability, and eta2 is for positive catch rates, where 0 is off, "AR1" is an AR1 process, and >0 is the number of elements in a factor-analysis covariance
          
-         # See the help for ?make_data() in R and the VAST manual on GitHub
+         # See the help for ?VAST::make_data() in R and the VAST manual on GitHub
          # Matrix with two columns where first column specifies the distribution for positive catch rates, and second element specifies the functional form for encounter probabilities
          # ******** ObsModel[2] = 0  # Conventional delta-model using log-link for positive catch rates and logit-link for encounter probability
          # ObsModel = c(2, 0)  # Gamma example: 0=normal (log-link); 1=lognormal; 2=gamma; 4=ZANB; 5=ZINB; 11=lognormal-mixture; 12=gamma-mixture
