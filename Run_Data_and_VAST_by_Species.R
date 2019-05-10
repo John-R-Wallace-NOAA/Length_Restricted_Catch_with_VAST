@@ -1,13 +1,32 @@
 
+if (!any(installed.packages()[, 1] %in% "devtools")) 
+     install.packages("devtools")
+
+if (!any(installed.packages()[, 1] %in% "JRWToolBox")) 	 
+     devtools::install_github("John-R-Wallace-NOAA/JRWToolBox")
+library(JRWToolBox)
+
 # Windows
-   library(JRWToolBox)
    # setwd("W:/ALL_USR/JRW/Assessment/WCGBTS Juvenile Species Habitat")
 
 # Linux
-   library(JRWToolBox)
-   Linux.First() # **** Answer prompts before moving on ****
+   JRWToolBox::Linux.First() # **** Answer prompts before moving on ****
+
+# Pre-load packages to check for problems
+lib(RCurl)
+lib(TMB)
+lib(sp)
+lib("John-R-Wallace-NOAA/Imap")
+lib("James-Thorson-NOAA/VAST")
+lib(raster)	 
+lib(hexbin)
+lib(rgdal)	 	 
+lib(numDeriv)
+lib(lattice)
+lib(TeachingDemos)
+
   
-JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
+JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R")
 
 spList <- list()
 spList[[1]] <- list(SP = 'petrale sole', LenMaxAges = c(17, 21), LatMax = 48.3, LatMin = 33.8, DepMin = 50, DepMax = 200)  # Lat: 33.8 - 48.3; Near Mex. border
@@ -33,10 +52,10 @@ spList
 # Now have 2018 data, so no need for: dupYears = 2012 (until early in 2021)
 
 DATA <- c(TRUE, FALSE)[1]
-
+# system.time(
 # Rho: Structure for beta (only) over time: 0=None (default); 1=WhiteNoise; 2=RandomWalk; 3=Constant intercept; 4=Autoregressive, each year as random following AR1 process
  for ( j in c(0,3)) {  # j is rho
-   for ( i in 1:13) {  # i is species
+   for ( i in 13) {  # i is species
    
      if(DATA)
        VAST.Length.Restricted.Catch( spList[[i]]$SP, Top.Prct = 15, Top.Years = 6, warehouseDownload = TRUE, LenMaxAges = spList[[i]]$LenMaxAges, RawDataPlots = TRUE, runVAST = FALSE, 
@@ -49,10 +68,12 @@ DATA <- c(TRUE, FALSE)[1]
    }
  
 }
+# )
    
 
 # See page 10 of the VAST manual for information on rho options:
  
-JRWToolBox::gitAFile("https://github.com/James-Thorson/VAST/blob/master/manual/VAST_model_structure.pdf", "pdf")
+JRWToolBox::gitAFile("https://github.com/James-Thorson-NOAA/VAST/blob/master/manual/VAST_model_structure.pdf", "pdf")
   
+
 
