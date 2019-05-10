@@ -18,11 +18,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
           INLA:::inla.dynload.workaround()  # INLA fix on some older Linux system - does nothing on Windows
           options(repos=c(CRAN="http://cran.fhcrc.org", CRANextra = "http://www.stats.ox.ac.uk/pub/RWin")) # Change to CRAN repository away from the Revolution Analytics frozen mirror.
    }
-   
-   if(.Platform$OS.type == "windows")
-       setwd("W:/ALL_USR/JRW/Assessment/WCGBTS Juvenile Species Habitat")
-   
-   # devtools::install_github("John-R-Wallace/R-ToolBox")
+      
    if (!any(installed.packages()[, 1] %in% "devtools")) 
            install.packages("devtools")
    if (!any(installed.packages()[, 1] %in% "RCurl")) 
@@ -33,11 +29,10 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
    # SHA('JRWToolBox')
    # devtools::install_github('John-R-Wallace/JRWToolBox', ref = '7ab2790284a0c75458eda651617fd029c2ff09cd')  # R 3.4.3; ; 2018-04-13 21:11:21 UTC; windows
 
-   if(.Platform$OS.type != "windows") 
-        lib("John-R-Wallace/Imap", quiet = F)
+   lib("John-R-Wallace/Imap", quiet = F)
    
    lib(numDeriv)
-   packageDescription('numDeriv')$Built #  "R 3.4.1; ; 2017-08-16 00:39:08 UTC; windows"
+   # packageDescription('numDeriv')$Built #  "R 3.4.1; ; 2017-08-16 00:39:08 UTC; windows"
    
    lib(lattice)
    lib(TeachingDemos)
@@ -517,7 +512,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
        if(DV) {
              knotsLatLong <- JRWToolBox::UTM.to.LatLong(1000 * Spatial_List$MeshList$loc_x)
              cat("\n\nCalculating bathymetric depths for the VAST knots using the Imap package's depthMeters() function:\n\n")
-             knotsDepth <- Imap::depthMeters(knotsLatLong)
+             knotsDepth <- Imap::depthMeters(knotsLatLong)		 
              dev.new(); hist(knotsDepth)
              knotsDepth[knotsDepth < 0] <- 0  # Set positive elevation (negative depth) of any knots on an island to zero. This can happen using Region = 'Other' - and bad things happen!!
              knotsDepth[knotsDepth == 0] <- min(knotsDepth[knotsDepth > 0])/2   # ########## try log ###############
@@ -548,10 +543,10 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
       setwd(DateFile)
       sink("TMB_Output.txt")
          # Not using the bias correction here since we are more interested in the areas than the index (J. Thorson, pers. comm.).
-         # Opt = TMBhelper::Optimize( obj=Obj, lower=TmbList$Lower, upper=TmbList$Upper, getsd=TRUE, savedir=DateFile, bias.correct=FALSE, bias.correct.control = list(sd = TRUE, nsplit = 5))
+         # Opt = TMBhelper::fit_tmb( obj=Obj, lower=TmbList$Lower, upper=TmbList$Upper, getsd=TRUE, savedir=DateFile, bias.correct=FALSE, bias.correct.control = list(sd = TRUE, nsplit = 5))
          # Removed the parameter limits used by nlminb() since previously one parameter was hitting a bound
-      Opt = TMBhelper::Optimize( obj = Obj, getsd = TRUE, bias.correct = FALSE, bias.correct.control = list(sd = TRUE, nsplit = 5))
-         # Opt = TMBhelper::Optimize( obj=Obj, lower=TmbList[["Lower"]], upper=TmbList[["Upper"]], getsd=TRUE, savedir=DateFile, 
+      Opt = TMBhelper::fit_tmb( obj = Obj, getsd = TRUE, bias.correct = FALSE, bias.correct.control = list(sd = TRUE, nsplit = 5))
+         # Opt = TMBhelper::fit_tmb( obj=Obj, lower=TmbList[["Lower"]], upper=TmbList[["Upper"]], getsd=TRUE, savedir=DateFile, 
          #                           bias.correct=TRUE, bias.correct.control=list(sd=FALSE, split=NULL, nsplit=5, vars_to_correct="Index_cyl"))
       sink()  
       Report <- Obj$report()
@@ -891,5 +886,6 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
 }
                       
                       
+
 
 
