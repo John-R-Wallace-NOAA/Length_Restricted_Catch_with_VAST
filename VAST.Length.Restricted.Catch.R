@@ -383,7 +383,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
        for ( i in 1:6) {
            if(PNG)  png(paste0(DirRaw, cA[[i]]$Name, ".png"), width = 2048, height = 2048 * ifelse( i == 6, 0.65, 1), bg = 'grey') else dev.new(width = 40, height = 30) 
            # autoLayer fails for cA[[5]], giving a partial SoCal hi-rez result
-           plotGIS(long = cA[[i]]$long, lat = cA[[i]]$lat, levels.contour = { if(CONTOUR) { c(-60, -80, -100, -120, -140, seq(0, -2000, by = -200)) } else NULL }, autoLayer = ifelse( i == 6, TRUE, FALSE))
+           Imap::plotGIS(long = cA[[i]]$long, lat = cA[[i]]$lat, levels.contour = { if(CONTOUR) { c(-60, -80, -100, -120, -140, seq(0, -2000, by = -200)) } else NULL }, autoLayer = ifelse( i == 6, TRUE, FALSE))
            
             # stars(data.frame(Two_and_Older = DAT$Total_sp_wt_kg - DAT$Total_sp_wt_LR_kg, Zero_and_One = DAT$Total_sp_wt_LR_kg), 
             #            locations = DAT[,c("Longitude_dd", "Latitude_dd")], labels = NULL, add = TRUE, draw.segments = TRUE, len=0.25)
@@ -413,7 +413,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
             if(length(Extra.Group.Size) == 1)
                   Extra.Group.Size <- c(1, rep(Extra.Group.Size, LenNum))
       
-            plot.bubble.zero.cross(BubDATA, group = BubGroup, add=T, scale.size = SCALE.SIZE, cross.cex = ifelse(PNG, 1, 0.2), cross.col = ifelse(i == 1, 'darkcyan', 'cyan'),
+            JRWToolBox::plot.bubble.zero.cross(BubDATA, group = BubGroup, add=T, scale.size = SCALE.SIZE, cross.cex = ifelse(PNG, 1, 0.2), cross.col = ifelse(i == 1, 'darkcyan', 'cyan'),
                       fill.col = LenMaxCols, border.col = LenMaxCols, fill.col.alpha = c(0.75, 0.80, 0.80), border.col.alpha = c(0.75, 0.80, 0.80), Extra.Group.Size = Extra.Group.Size, legend = F)
             
             if(PNG) dev.off() 
@@ -802,15 +802,14 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
           AreaCol <- data.frame(Area = AreaCol, Col1 = c("grey40","cyan4","gold4",rainbow(11))[sample(14, NC, replace=T)], Col2 = c("grey40","cyan4","gold4",rainbow(11))[sample(14, NC, replace=T)],
                                     Shape1 = sample(c(15,17,19), NC, replace=T), Shape2 = sample(c(15,17,19), NC, replace=T))
             
-          # Coastal Areas for raw data and results with raw data plots
-          # See the raw data plots above for the cA list
+          # See the raw data plots above for the cA (Coastal Areas) list
            
           # for ( i in 7) {   # Entire coast using Imap
           for ( i in 1:6) {
                if(PNG) png(paste0(Dir, cA[[i]]$Name, ".png"), width = 2048, height = 2048 * ifelse( i == 6, 0.65, 1), bg = 'grey')  else dev.new(width = 40, height = 30)
                if(i %in% 1:6) {
                    # autoLayer fails for cA[[5]], giving a partial SoCal hi-rez result
-                   plotGIS(long = cA[[i]]$long, lat = cA[[i]]$lat, levels.contour = { if(CONTOUR) { c(-60, -80, -100, -120, -140, seq(0, -2000, by = -200)) } else NULL }, autoLayer = ifelse( i == 6, TRUE, FALSE))
+                   Imap::plotGIS(long = cA[[i]]$long, lat = cA[[i]]$lat, levels.contour = { if(CONTOUR) { c(-60, -80, -100, -120, -140, seq(0, -2000, by = -200)) } else NULL }, autoLayer = ifelse( i == 6, TRUE, FALSE))
                } else  
                    Imap::imap(list(world.h.land), longrange = cA[[i]]$long, latrange = cA[[i]]$lat, zoom = FALSE)
                
@@ -824,7 +823,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
               }
               LenMaxCols <- list("red", c("blue", "red"), c("magenta", "blue", "red"))[[LenNum]]
               if(i %in% 1:6)
-                  plot.bubble.zero.cross(BubDATA, group = BubGroup, add=T, scale.size = SCALE.SIZE, cross.cex = ifelse(PNG, 1, 0.2), cross.col = ifelse(i == 1, 'darkcyan', 'cyan'),
+                  JRWToolBox::plot.bubble.zero.cross(BubDATA, group = BubGroup, add=T, scale.size = SCALE.SIZE, cross.cex = ifelse(PNG, 1, 0.2), cross.col = ifelse(i == 1, 'darkcyan', 'cyan'),
                           fill.col = LenMaxCols, border.col = LenMaxCols, fill.col.alpha = 0.75, border.col.alpha = 0.75, legend = F)
                           
               for ( j in 1:length(AREAS)) {
@@ -854,7 +853,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
               if(DRAW.TRIANGULATION.MESH) {
                    SpatialIsoLL <- Spatial_List$MeshList$isotropic_mesh
                    SpatialIsoLL$loc <- JRWToolBox::UTM.to.LatLong(1000*SpatialIsoLL$loc)
-                   INLA::plot.inla.mesh(SpatialIsoLL, draw.vertices = TRUE, lwd = 2, size = 10, add=T)
+                   INLA::plot.inla.mesh(SpatialIsoLL, draw.vertices = TRUE, lwd = 2, size = 10, add = TRUE)
                    # points(JRWToolBox::UTM.to.LatLong(1000*Spatial_List$loc_x), col = 'blue', pch = 19, cex=1)  # Add larger vertices (knots)
               }
               if(POLYGONS) {
@@ -886,6 +885,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
 }
                       
                       
+
 
 
 
