@@ -770,7 +770,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
           (PLOTTER <- c("GIS", "Imap")[1]) # Use Imap only for the entire coast option, i.e. uncomment  < # for ( i in 7) {   # Entire coast using Imap >  and comment out  < for ( i in 1:6) { >  on lines 807 and 808.
           (AREA.TYPE <- c("All", "Top")[2])   # AREAS are the groupings of the underlying extrapolation points
           (BIOMASS <- c(T, F)[2]) # TRUE = Biomass Level coloration; FALSE = Random color; Biomass Level are those values assigned by running VAST, here standardized for plotting.
-          (DRAW.TRIANGULATION.MESH <- c(T, F)[2])    #  TRUE turns on the drawing the triangulation mesh
+          (DRAW.TRIANGULATION.MESH <- c(T, F)[2])    #  TRUE turns on drawing the triangulation mesh
           (SCALE.SIZE = Bubble.Size) # Scale argument for bubbles in the bubble plots  (now set via an argument)
           (CONTOUR <- c(T, F)[1])
           (POLYGONS <- c(T, F)[2])
