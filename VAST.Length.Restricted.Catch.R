@@ -750,7 +750,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
           dim(Table(Pet.Quant.80$Area, Pet.Quant.80$Year))
           
           tmp <- sort(apply(Table(Pet.Quant.80$Area, Pet.Quant.80$Year), 1, function(x) sum(x > 0)))
-          Top.Areas.80.by.Year.at.Least.40prct.of.Years.Dpth <- names(tmp[tmp >= Top.Years])  
+          Top.Areas.80.by.Year.at.Least.40prct.of.Years.Dpth <- names(tmp[tmp >= Top.Years])  # This name is not modified for particular Top.Prct and Top.Year arguments
           tmp2 <- Pet.Quant.80[Pet.Quant.80$Area %in% Top.Areas.80.by.Year.at.Least.40prct.of.Years.Dpth,]
           # Table(tmp2$Area, tmp2$Year)
           dim(Table(tmp2$Area, tmp2$Year))
@@ -766,15 +766,15 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
           dev.new(); hist(DatG$Total_sp_wt_LR_kg/DatG$Area_Swept_ha)
           
           
-          (PNG <- c(T, F)[1]) # TRUE = PNG; FALSE = Windows
-          (PLOTTER <- c("GIS", "Imap")[1])
-          (BIOMASS <- c(T, F)[2]) # TRUE  = Biomass Level; FALSE = Random color
-          (AREA.TYPE <- c("All", "Top")[2])
-          (DRAW.TRIANGULATION.MESH <- c(T, F)[2])
-          (SCALE.SIZE = Bubble.Size) # Scale for bubbles in the bubble plots
+          (PNG <- c(T, F)[1]) # TRUE = PNG; FALSE = Windows  # Windows is only good very initially and not that WYSWYG for PNG
+          (PLOTTER <- c("GIS", "Imap")[1]) # Use Imap only for the entire coast option, i.e. uncomment  < # for ( i in 7) {   # Entire coast using Imap >  and comment out  < for ( i in 1:6) { >  on lines 807 and 808.
+          (AREA.TYPE <- c("All", "Top")[2])   # AREAS are the groupings of the underlying extrapolation points
+          (BIOMASS <- c(T, F)[2]) # TRUE = Biomass Level coloration; FALSE = Random color; Biomass Level are those values assigned by running VAST, here standardized for plotting.
+          (DRAW.TRIANGULATION.MESH <- c(T, F)[2])    #  TRUE turns on the drawing the triangulation mesh
+          (SCALE.SIZE = Bubble.Size) # Scale argument for bubbles in the bubble plots  (now set via an argument)
           (CONTOUR <- c(T, F)[1])
           (POLYGONS <- c(T, F)[2])
-          (PLOTLOWAREAS <- c(T, F)[2])  # Plot the areas not cosidered high - the low areas.
+          (PLOTLOWAREAS <- c(T, F)[2])   # Plot the areas not considered high, i.e. the low areas.
           
           if(POLYGONS & !exists('AreaGroup'))
              load("W:\\ALL_USR\\JRW\\Assessment\\SP - Melissa\\Org. Files Nov 2017, 2015 Data\\4 - Run VAST on WCGBTS\\SP WCGBTS AreaGroup 05 Apr 2018 3_25PM.dmp")
@@ -885,6 +885,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
 }
                       
                       
+
 
 
 
