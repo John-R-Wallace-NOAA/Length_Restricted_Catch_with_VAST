@@ -7,7 +7,7 @@
 
       # ====================================================================================================================================
       
-      # **** When using all the data available, figure 7 may take a long time to run. I use dplyr::sample_frac() below to sample the data when testing. ****
+      # **** When using all the data available, figure 7 may take a long time to run. I use dplyr::sample_frac() below to randomly sample the data when testing. ****
       
       if (!any(installed.packages()[, 1] %in% "devtools"))  
          install.packages('devtools')  
@@ -48,7 +48,7 @@
        (LenNum <- length(LenSplitsList))
        (Extra.Group.Size = rep(1, LenNum + 1))
      
-       (Figs <- list(1:7, 1:6, 7))[[3]]  # All 7 figures, just the first 6, or only the last one with the entire coast
+       (Figs <- list(1:7, 1:6, 7)[[3]])  # All 7 figures, just the first 6, or only the last one with the entire coast
        (PNG <- c(T, F)[1]) # TRUE = PNG; FALSE = Windows
        (CONTOUR <- c(T, F)[1])
         
@@ -65,12 +65,14 @@
             if(PNG)  png(paste0(DirRaw, cA[[i]]$Name, ".png"), width = ifelse(i %in% 7, 6000, 2048), height = ifelse(i %in% 7, 6000, 2048) * ifelse( i == 6, 0.65, 1), bg = 'grey') else dev.new(width = 40, height = 30) 
             if(i %in% 1:6) 
                Imap::plotGIS(long = cA[[i]]$long, lat = cA[[i]]$lat, levels.contour = { if(CONTOUR) { c(-60, -80, -100, -120, -140, seq(0, -2000, by = -200)) } else NULL }, autoLayer = ifelse(i %in% 6, TRUE, FALSE))
-            if( i %in% 7)  {       
+            if( i %in% 7)  { 
+               par(cex = 6)              
                Imap::imap(longlat = list(Imap::world.h.land, Imap::world.h.borders), col = c("black", "cyan"), poly = c("grey40", NA), longrange = c(-140, -117), latrange = c(31.75, 48.2), 
                           zoom = FALSE, bg = "white", axes = "latOnly")  
                box(lwd = 5) 
-               axis(1, at = -(124:117), labels = paste0(124:117, "W"), col = Col(LenNum)[1], cex.axis = 5, col.axis = Col(LenNum)[1], lwd = 5 , padj = 1, tck = -0.005)
-      
+               axis(1, at = -(124:117), labels = paste0(124:117, "W"), col = Col(LenNum)[1], col.axis = Col(LenNum)[1], lwd = 5 )
+               axis(2, at = c(35, 40, 50), labels = rep("", 3), lwd = 5)
+               axis(4, at = c(35, 40, 50), labels = rep("", 3), lwd = 5)
             }
           
 		   BubDATA <- NULL
@@ -80,7 +82,7 @@
           #  for( j in ncol(DAT)) {
            for( j in ncol(DAT):(ncol(DAT) - LenNum + 1)) {
               TMP <- DAT[!duplicated(DAT$KEY), c(9, 10, j)]
-              # TMP <- dplyr::sample_frac(TMP, 0.01) # **** Un-comment to test on a small sample ****
+              TMP <- dplyr::sample_frac(TMP, 0.01) # **** Un-comment to test on a small sample ****
               names(TMP) <- c('X', 'Y', 'Z')
               BubDATA <- rbind(BubDATA, TMP)
               BubGroup <- c(BubGroup, rep(j, nrow(TMP)))
@@ -106,19 +108,8 @@
             if(PNG) gof()
       }
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+ 
+
       
       
       
