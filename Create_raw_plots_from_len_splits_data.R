@@ -14,8 +14,7 @@
       devtools::install_github("John-R-Wallace-NOAA/JRWToolBox")
       JRWToolBox::lib("John-R-Wallace-NOAA/Imap")
 
-      
-      
+            
       JRWToolBox::lib(dplyr)
       JRWToolBox::lib(TeachingDemos)
 
