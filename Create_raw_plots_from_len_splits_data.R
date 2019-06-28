@@ -1,15 +1,15 @@
 
       # Download with:
-      JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/Create_raw_plots_from len_splits_data.R", "script", File = "Create_raw_plots_from len_splits_data.R.R", show = FALSE)
+      JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/Create_raw_plots_from_len_splits_data.R", "script", File = "Create_raw_plots_from_len_splits_data.R", show = FALSE)
       
-      # Or edit with [using a properly configured gitEdit()]
-      JRWToolBox::gitEdit(Create_raw_plots_from len_splits_data.R, "John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/")  
+      # Or directly edit with [using a properly configured gitEdit()]
+      JRWToolBox::gitEdit(Create_raw_plots_from_len_splits_data, "John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/")  
 
       # ====================================================================================================================================
       
       
       if (!any(installed.packages()[, 1] %in% "devtools"))  
-        install.packages('devtools')  
+         install.packages('devtools')  
       devtools::install_github("John-R-Wallace-NOAA/JRWToolBox")
       JRWToolBox::lib("John-R-Wallace-NOAA/Imap")
 
