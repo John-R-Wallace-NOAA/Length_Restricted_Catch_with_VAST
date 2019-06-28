@@ -2,11 +2,12 @@
       # Download with:
       JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/Create_raw_plots_from_len_splits_data.R", "script", File = "Create_raw_plots_from_len_splits_data.R", show = FALSE)
       
-      # Or directly edit with [using a properly configured gitEdit()]
+      # Directly edit with [using a properly configured gitEdit()]
       JRWToolBox::gitEdit(Create_raw_plots_from_len_splits_data, "John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/")  
 
       # ====================================================================================================================================
       
+      # **** When using all the data available, figure 7 may take a long time to run. I use dplyr::sample_frac() below to sample the data when testing. ****
       
       if (!any(installed.packages()[, 1] %in% "devtools"))  
          install.packages('devtools')  
