@@ -9,23 +9,23 @@
   
    
               
-# Now with 'LM'            
-spList <- list()
-spList[[1]] <- list(SP = 'petrale sole', LenMaxAges = c(17, 21), LatMax = 48.3, LatMin = 33.8, DepMin = 50, DepMax = 200, LM = 21)  # Lat: 33.8 - 48.3; Near Mex. border
-spList[[2]] <- list(SP = 'sablefish',  LenMaxAges = 29, LatMax = 48.3, LatMin = 33.8, DepMin = 50, DepMax = 475, LM = 29) # Lat: 33.8 - 48.3; Near Mex. border
-spList[[3]] <- list(SP = 'Dover sole',  LenMaxAges = c(12, 17), LatMax = 47.5, LatMin = 32.5, DepMin = 50, DepMax = 465, Extra.Group.Size = c(1, 2, 2), LM = 17) # Lat: 32.5 - 47.5; Near Mex. border
-spList[[4]] <- list(SP = 'English sole',  LenMaxAges = 16, LatMax = 46.0, LatMin = 33.0, DepMin = 50, DepMax = 140, LM = 16) # Lat: 33.0 - 46.0; Near Mex. border
-spList[[5]] <- list(SP = 'Pacific sanddab',  LenMaxAges = c(8, 13), LatMax = 48.2, LatMin = 32.5, DepMin = 50, DepMax = 245, LM = 13) # Lat: 32.5 - 48.2; Near Mex. border
-spList[[6]] <- list(SP = 'arrowtooth flounder',  LenMaxAges = 22, LatMax = 48.5, LatMin = 38, DepMin = 50, DepMax = 470, Extra.Group.Size = c(1, 5), LM = 22) # Lat: 38 - 48.5; North of San Fran.
-spList[[7]] <- list(SP = 'Pacific hake',  LenMaxAges = c(15, 26), LatMax = 48.5, LatMin = 32.5, DepMin = 50, DepMax = 700, Extra.Group.Size = c(1, 2, 2), LM = 26) # Entire Coast
-spList[[8]] <- list(SP = 'lingcod',  LenMaxAges = 25, LatMax = 47.4, LatMin = 33.5, DepMin = 50, DepMax = 240, Extra.Group.Size = c(1, 8), LM = 25) # Lat: 32.5 - 48.5; Near Mex. border
-spList[[9]] <- list(SP = 'Pacific grenadier',  LenMaxAges = c(1, 2, 3), LatMax = 48.5, LatMin = 33.0, DepMin = 490, DepMax = 1275, Extra.Group.Size = 25, LM = 3) # Lat: 33.0 - 48.5; Near Mex. border
-spList[[10]] <- list(SP = 'shortspine thornyhead',  LenMaxAges = c(6, 7, 8), LatMax = 48.3, LatMin = 33.8, DepMin = 160, DepMax = 625, Extra.Group.Size = 20, LM = 8) # Lat: 33.8 - 48.3; Near Mex. border
-spList[[11]] <- list(SP = 'longspine thornyhead',  LenMaxAges = c(5, 6, 7), LatMax = 48.2, LatMin = 32.5, DepMin = 385, DepMax = 1245, Extra.Group.Size = 20, LM = 7) # Lat: 32.5 - 48.2; Near Mex. border
-spList[[12]] <- list(SP = 'darkblotched rockfish',  LenMaxAges = c(9, 15), LatMax = 48.5, LatMin = 37.5, DepMin = 80, DepMax = 240, LM = 15) # Lat: 37.8 - 48.5; North of San Fran.
-spList[[13]] <- list(SP = 'splitnose rockfish',  LenMaxAges = c(5, 10), LatMax = 48.5, LatMin = 32.5, DepMin = 65, DepMax = 460, LM = 10) # # Lat: 32.5 - 48.5; Near Mex. border
+# SpList with 'LM'    (old name was spList)
+SpList <- list()
+SpList[[1]] <- list(SP = 'petrale sole', LenMaxAges = c(17, 21), LatMax = 48.3, LatMin = 33.8, DepMin = 50, DepMax = 200, LM = 21)  # Lat: 33.8 - 48.3; Near Mex. border
+SpList[[2]] <- list(SP = 'sablefish',  LenMaxAges = 29, LatMax = 48.3, LatMin = 33.8, DepMin = 50, DepMax = 475, LM = 29) # Lat: 33.8 - 48.3; Near Mex. border
+SpList[[3]] <- list(SP = 'Dover sole',  LenMaxAges = c(12, 17), LatMax = 47.5, LatMin = 32.5, DepMin = 50, DepMax = 465, Extra.Group.Size = c(1, 2, 2), LM = 17) # Lat: 32.5 - 47.5; Near Mex. border
+SpList[[4]] <- list(SP = 'English sole',  LenMaxAges = 16, LatMax = 46.0, LatMin = 33.0, DepMin = 50, DepMax = 140, LM = 16) # Lat: 33.0 - 46.0; Near Mex. border
+SpList[[5]] <- list(SP = 'Pacific sanddab',  LenMaxAges = c(8, 13), LatMax = 48.2, LatMin = 32.5, DepMin = 50, DepMax = 245, LM = 13) # Lat: 32.5 - 48.2; Near Mex. border
+SpList[[6]] <- list(SP = 'arrowtooth flounder',  LenMaxAges = 22, LatMax = 48.5, LatMin = 38, DepMin = 50, DepMax = 470, Extra.Group.Size = c(1, 5), LM = 22) # Lat: 38 - 48.5; North of San Fran.
+SpList[[7]] <- list(SP = 'Pacific hake',  LenMaxAges = c(15, 26), LatMax = 48.5, LatMin = 32.5, DepMin = 50, DepMax = 700, Extra.Group.Size = c(1, 2, 2), LM = 26) # Entire Coast
+SpList[[8]] <- list(SP = 'lingcod',  LenMaxAges = 25, LatMax = 47.4, LatMin = 33.5, DepMin = 50, DepMax = 240, Extra.Group.Size = c(1, 8), LM = 25) # Lat: 32.5 - 48.5; Near Mex. border
+SpList[[9]] <- list(SP = 'Pacific grenadier',  LenMaxAges = c(1, 2, 3), LatMax = 48.5, LatMin = 33.0, DepMin = 490, DepMax = 1275, Extra.Group.Size = 25, LM = 3) # Lat: 33.0 - 48.5; Near Mex. border
+SpList[[10]] <- list(SP = 'shortspine thornyhead',  LenMaxAges = c(6, 7, 8), LatMax = 48.3, LatMin = 33.8, DepMin = 160, DepMax = 625, Extra.Group.Size = 20, LM = 8) # Lat: 33.8 - 48.3; Near Mex. border
+SpList[[11]] <- list(SP = 'longspine thornyhead',  LenMaxAges = c(5, 6, 7), LatMax = 48.2, LatMin = 32.5, DepMin = 385, DepMax = 1245, Extra.Group.Size = 20, LM = 7) # Lat: 32.5 - 48.2; Near Mex. border
+SpList[[12]] <- list(SP = 'darkblotched rockfish',  LenMaxAges = c(9, 15), LatMax = 48.5, LatMin = 37.5, DepMin = 80, DepMax = 240, LM = 15) # Lat: 37.8 - 48.5; North of San Fran.
+SpList[[13]] <- list(SP = 'splitnose rockfish',  LenMaxAges = c(5, 10), LatMax = 48.5, LatMin = 32.5, DepMin = 65, DepMax = 460, LM = 10) # # Lat: 32.5 - 48.5; Near Mex. border
 
-# spList
+# SpList
 
 # Now have 2018 data, so no need for: dupYears = 2012 (until early in 2021)
 
@@ -36,13 +36,13 @@ DATA <- c(TRUE, FALSE)[2]
    for ( i in 1:13) {  # i is species
    
      if(DATA)
-       VAST.Length.Restricted.Catch( spList[[i]]$SP, Top.Prct = 15, Top.Years = 6, warehouseDownload = TRUE, LenMaxAges = spList[[i]]$LenMaxAges, RawDataPlots = TRUE, runVAST = FALSE, 
-            LatMax = spList[[i]]$LatMax,  LatMin = spList[[i]]$LatMin , DepMin = spList[[i]]$DepMin, DepMax = spList[[i]]$DepMax)
+       VAST.Length.Restricted.Catch( SpList[[i]]$SP, Top.Prct = 15, Top.Years = 6, warehouseDownload = TRUE, LenMaxAges = SpList[[i]]$LenMaxAges, RawDataPlots = TRUE, runVAST = FALSE, 
+            LatMax = SpList[[i]]$LatMax,  LatMin = SpList[[i]]$LatMin , DepMin = SpList[[i]]$DepMin, DepMax = SpList[[i]]$DepMax)
         
      else
-        try(VAST.Length.Restricted.Catch( spList[[i]]$SP, Top.Prct = 15, Top.Years = 6, warehouseDownload = FALSE, LenMaxAges = spList[[i]]$LenMaxAges, LatMax = spList[[i]]$LatMax,
-               LatMin = spList[[i]]$LatMin , DepMin = spList[[i]]$DepMin, DepMax = spList[[i]]$DepMax, RawDataPlots = FALSE, runVAST = TRUE, runDiagnostics = TRUE, allAgesBubble = FALSE, 
-               rhoConfig = j, Extra.Group.Size = spList[[i]]$Extra.Group.Size))
+        try(VAST.Length.Restricted.Catch( SpList[[i]]$SP, Top.Prct = 15, Top.Years = 6, warehouseDownload = FALSE, LenMaxAges = SpList[[i]]$LenMaxAges, LatMax = SpList[[i]]$LatMax,
+               LatMin = SpList[[i]]$LatMin , DepMin = SpList[[i]]$DepMin, DepMax = SpList[[i]]$DepMax, RawDataPlots = FALSE, runVAST = TRUE, runDiagnostics = TRUE, allAgesBubble = FALSE, 
+               rhoConfig = j, Extra.Group.Size = SpList[[i]]$Extra.Group.Size))
    }
  
 }
@@ -96,6 +96,7 @@ box(lwd = 5)
  
 # ---------------  Main Loop -------------------------------------------------
 
+# Load new SpList above which includes LM
  
 baseLoad <- " "
 # source("W:\\ALL_USR\\JRW\\R.Vanilla\\imap.R")
@@ -104,21 +105,21 @@ baseLoad <- " "
     
 
 
-for ( jj in 1:13) {
+for ( jj in 2:13) {
    
 
-    print(spList[[jj]]$SP)
+    print(SpList[[jj]]$SP)
     
     if(exists('Ages')) rm(Ages) 
     
     if( jj %in%  2:5)
-       load(paste0("\\\\nwctantalus.nmfs.local\\jwallace\\h_jwallace\\WCGBTS_JV_3\\2019-03-07_", as.character(Spec.code.f(spList[[jj]]$SP, char=TRUE)[4]), "_DV_WCGBTS_LM", spList[[jj]]$LM, "_v5_5_0_Rho=3_AS_nx=600\\Image.RData"))
+       load(paste0("\\\\nwctantalus.nmfs.local\\jwallace\\h_jwallace\\WCGBTS_JV_3\\2019-03-07_", as.character(Spec.code.f(SpList[[jj]]$SP, char=TRUE)[4]), "_DV_WCGBTS_LM", SpList[[jj]]$LM, "_v5_5_0_Rho=3_AS_nx=600\\Image.RData"))
     
     if( jj %in%  c(1, 6:9, 11:13))
-       load(paste0("\\\\nwctantalus.nmfs.local\\jwallace\\h_jwallace\\WCGBTS_JV_3\\2019-03-08_", as.character(Spec.code.f(spList[[jj]]$SP, char=TRUE)[4]), "_DV_WCGBTS_LM", spList[[jj]]$LM, "_v5_5_0_Rho=3_AS_nx=600\\Image.RData"))
+       load(paste0("\\\\nwctantalus.nmfs.local\\jwallace\\h_jwallace\\WCGBTS_JV_3\\2019-03-08_", as.character(Spec.code.f(SpList[[jj]]$SP, char=TRUE)[4]), "_DV_WCGBTS_LM", SpList[[jj]]$LM, "_v5_5_0_Rho=3_AS_nx=600\\Image.RData"))
     
     if( jj %in%  10)
-       load(paste0("\\\\nwctantalus.nmfs.local\\jwallace\\h_jwallace\\WCGBTS_JV_3\\2019-03-11_", as.character(Spec.code.f(spList[[jj]]$SP, char=TRUE)[4]), "_DV_WCGBTS_LM", spList[[jj]]$LM, "_v5_5_0_Rho=3_AS_nx=600\\Image.RData"))
+       load(paste0("\\\\nwctantalus.nmfs.local\\jwallace\\h_jwallace\\WCGBTS_JV_3\\2019-03-11_", as.character(Spec.code.f(SpList[[jj]]$SP, char=TRUE)[4]), "_DV_WCGBTS_LM", SpList[[jj]]$LM, "_v5_5_0_Rho=3_AS_nx=600\\Image.RData"))
     
         
     HomeDir = "."
@@ -142,7 +143,7 @@ for ( jj in 1:13) {
     #           strata.limits = strata.limits, HomeDir = HomeDir, title = TRUE, rhoConfig. = rhoConfig, Graph.Dev = "tiff")
     # 
     
-    cat("\nDone:", spList[[jj]]$SP, "\n\n\n")         
+    cat("\nDone:", SpList[[jj]]$SP, "\n\n\n")         
    
  }   
     
