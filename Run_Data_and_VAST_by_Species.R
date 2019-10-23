@@ -54,7 +54,7 @@ JRWToolBox::gitAFile("https://github.com/James-Thorson/VAST/blob/master/manual/V
   
 
   
-# ===================== Redo Final Figures =============================================
+# ===================== Redo Final Figures, Rho = 3 =============================================
 
 # ---------- Prelimininary Steps ---------  
   
@@ -128,9 +128,9 @@ for ( jj in 1:13) {
     if(exists('Ages')) cat("\nAges = ", Ages, "\n")
     
     
-    YearlyResultsFigures(spLongName. = spLongName, spShortName. = spShortName, longitudeDelta = 2.6, Index = IndexTable, SP.Results.Dpth = SP.Results.Dpth, 
+    JRWToolBox::YearlyResultsFigures(spLongName. = spLongName, spShortName. = spShortName, longitudeDelta = 2.6, Index = IndexTable, SP.Results.Dpth = SP.Results.Dpth, 
             MapDetails_List = MapDetails_List, Report = Report, Opt = Opt, DateFile = DateFile, Year_Set = Year_Set, Years2Include = Years2Include, Ages = Ages, LenMin = LenMin, LenMax = LenMax, 
-            strata.limits = strata.limits, HomeDir = HomeDir, title = TRUE, Graph.Dev = "tiff")
+            strata.limits = strata.limits, HomeDir = HomeDir, title = TRUE, rhoConfig. = rhoConfig, Graph.Dev = "tiff")
     
     # ---- Recreate SP.Results.Dpth  ----
     
@@ -139,7 +139,7 @@ for ( jj in 1:13) {
     
     # SP.Results.Dpth <- JRWToolBox::YearlyResultsFigures(spLongName. = spLongName, spShortName. = spShortName, longitudeDelta = 2.6, Index = IndexTable, SP.Results.Dpth = NULL, 
     #           MapDetails_List = MapDetails_List, Report = Report, Opt = Opt, DateFile = DateFile, Year_Set = Year_Set, Years2Include = Years2Include, Ages = Ages, LenMin = LenMin, LenMax = LenMax, 
-    #           strata.limits = strata.limits, HomeDir = HomeDir, title = TRUE, Graph.Dev = "tiff")
+    #           strata.limits = strata.limits, HomeDir = HomeDir, title = TRUE, rhoConfig. = rhoConfig, Graph.Dev = "tiff")
     # 
     
     cat("\nDone:", spList[[jj]]$SP, "\n\n\n")         
