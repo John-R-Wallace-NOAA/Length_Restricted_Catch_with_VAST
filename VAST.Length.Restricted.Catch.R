@@ -646,7 +646,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
           # eastLongitude = -160.5 # OLD
           SP.Results.Dpth <- JRWToolBox::YearlyResultsFigures(spLongName. = spLongName, spShortName. = spShortName, longitudeDelta = 2.6, Index = IndexTable, SP.Results.Dpth = NULL, 
               MapDetails_List = MapDetails_List, Report = Report, Opt = Opt, DateFile = DateFile, Year_Set = Year_Set, Years2Include = Years2Include, Ages = Ages, LenMin = LenMin, LenMax = LenMax, 
-              strata.limits = strata.limits, HomeDir = HomeDir, title = TRUE)
+              strata.limits = strata.limits, HomeDir = HomeDir, rhoConfig. = rhoConfig, title = TRUE)
               
           stopifnot(exists('SP.Results.Dpth'))
           
@@ -885,6 +885,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
 }
                       
                       
+
 
 
 
