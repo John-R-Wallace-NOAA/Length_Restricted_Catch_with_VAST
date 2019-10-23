@@ -128,17 +128,20 @@ for ( jj in 1:13) {
     if(exists('Ages')) cat("\nAges = ", Ages, "\n")
     
     
-    # YearlyResultsFigures(spLongName. = spLongName, spShortName. = spShortName, longitudeDelta = 2.6, Index = IndexTable, SP.Results.Dpth = SP.Results.Dpth, 
-    #         MapDetails_List = MapDetails_List, Report = Report, Opt = Opt, DateFile = DateFile, Year_Set = Year_Set, Years2Include = Years2Include, Ages = Ages, LenMin = LenMin, LenMax = LenMax, 
-    #         strata.limits = strata.limits, HomeDir = HomeDir, title = TRUE, Graph.Dev = "tiff")
+    YearlyResultsFigures(spLongName. = spLongName, spShortName. = spShortName, longitudeDelta = 2.6, Index = IndexTable, SP.Results.Dpth = SP.Results.Dpth, 
+            MapDetails_List = MapDetails_List, Report = Report, Opt = Opt, DateFile = DateFile, Year_Set = Year_Set, Years2Include = Years2Include, Ages = Ages, LenMin = LenMin, LenMax = LenMax, 
+            strata.limits = strata.limits, HomeDir = HomeDir, title = TRUE, Graph.Dev = "tiff")
     
-    # Redo creating SP.Results.Dpth
-    # SP.Results.Dpth.OLD <- SP.Results.Dpth
-    rm(SP.Results.Dpth)
-    SP.Results.Dpth <- JRWToolBox::YearlyResultsFigures(spLongName. = spLongName, spShortName. = spShortName, longitudeDelta = 2.6, Index = IndexTable, SP.Results.Dpth = NULL, 
-              MapDetails_List = MapDetails_List, Report = Report, Opt = Opt, DateFile = DateFile, Year_Set = Year_Set, Years2Include = Years2Include, Ages = Ages, LenMin = LenMin, LenMax = LenMax, 
-              strata.limits = strata.limits, HomeDir = HomeDir, title = TRUE, Graph.Dev = "tiff")
-              
+    # ---- Recreate SP.Results.Dpth  ----
+    
+    # # SP.Results.Dpth.OLD <- SP.Results.Dpth
+    # rm(SP.Results.Dpth)
+    
+    # SP.Results.Dpth <- JRWToolBox::YearlyResultsFigures(spLongName. = spLongName, spShortName. = spShortName, longitudeDelta = 2.6, Index = IndexTable, SP.Results.Dpth = NULL, 
+    #           MapDetails_List = MapDetails_List, Report = Report, Opt = Opt, DateFile = DateFile, Year_Set = Year_Set, Years2Include = Years2Include, Ages = Ages, LenMin = LenMin, LenMax = LenMax, 
+    #           strata.limits = strata.limits, HomeDir = HomeDir, title = TRUE, Graph.Dev = "tiff")
+    # 
+    
     cat("\nDone:", spList[[jj]]$SP, "\n\n\n")         
    
  }   
