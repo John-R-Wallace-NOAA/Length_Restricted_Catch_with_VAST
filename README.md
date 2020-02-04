@@ -1,6 +1,7 @@
 # Length_Restricted_Catch_with_VAST
 Using VAST on Length Restricted Catch to define Essential Fish Habitat (EFH)
 
+    gitEdit(Run_Data_and_VAST_by_Species, 'John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/')
     JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
     gitEdit(VAST.Length.Restricted.Catch, 'John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/')
     gitEdit(YearlyResultsFigures)  # From JRWToolBox
