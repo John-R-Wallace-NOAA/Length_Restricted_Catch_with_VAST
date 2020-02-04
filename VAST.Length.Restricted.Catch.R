@@ -498,13 +498,13 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
          if(AS) 
            TmbData <- VAST::make_data(Version=Version, FieldConfig=FieldConfig, OverdispersionConfig=OverdispersionConfig, RhoConfig=RhoConfig, ObsModel=ObsModel, 
              "c_i"=rep(0, nrow(DatG)), "b_i"=DatG$Total_sp_wt_LR_kg, "a_i"=DatG$Area_Swept_ha, "v_i"=as.numeric(factor(DatG$Vessel))-1, 
-             "s_i"=Spatial_List$knot_i-1, "t_i"=DatG$Year, "a_xl"=Spatial_List$a_xl, MeshList=Spatial_List$MeshList, GridList=Spatial_List$GridList, 
+             spatial_list = Spatial_List, "s_i"=Spatial_List$knot_i-1, "t_i"=DatG$Year, "a_xl"=Spatial_List$a_xl, MeshList=Spatial_List$MeshList, GridList=Spatial_List$GridList, 
              Method=Spatial_List$Method, Options=Options )         
                  
          if(!AS) 
           TmbData <- VAST::make_data(Version=Version, FieldConfig=FieldConfig, OverdispersionConfig=OverdispersionConfig, RhoConfig=RhoConfig, ObsModel=ObsModel, 
              c_i=rep(0, nrow(DatG)), b_i=DatG$Total_sp_wt_LR_kg, a_i=rep(1, nrow(DatG)), v_i=as.numeric(factor(DatG$Vessel))-1, 
-             s_i=Spatial_List$knot_i-1, t_iz=DatG$Year, a_xl=Spatial_List$a_xl, MeshList=Spatial_List$MeshList, GridList=Spatial_List$GridList, 
+             spatial_list = Spatial_List, s_i=Spatial_List$knot_i-1, t_iz=DatG$Year, a_xl=Spatial_List$a_xl, MeshList=Spatial_List$MeshList, GridList=Spatial_List$GridList, 
              Method=Spatial_List$Method, Options=Options )
        }
        
@@ -528,8 +528,8 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
           if(AS)
               TmbData <- VAST::make_data(Version=Version, FieldConfig=FieldConfig, OverdispersionConfig=OverdispersionConfig, RhoConfig=RhoConfig, ObsModel=ObsModel, 
                  c_i=rep(0, nrow(DatG)), b_i = DatG$Total_sp_wt_LR_kg, a_i = if(AS) DatG$Area_Swept_ha else rep(1, nrow(DatG)), v_i=as.numeric(factor(DatG$Vessel)) - 1, 
-                 s_i=Spatial_List$knot_i - 1, t_i=DatG$Year, a_xl =Spatial_List$a_xl, MeshList=Spatial_List$MeshList, GridList=Spatial_List$GridList, X_xtp = depthCovar,
-                 Method=Spatial_List$Method, Options=Options )             
+                 spatial_list = Spatial_List, s_i=Spatial_List$knot_i - 1, t_i=DatG$Year, a_xl =Spatial_List$a_xl, MeshList=Spatial_List$MeshList, GridList=Spatial_List$GridList, 
+                 X_xtp = depthCovar, Method=Spatial_List$Method, Options=Options )             
        }    
           
        
@@ -564,10 +564,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
                        "The model is likely not converged (the critera is a pd Hess and the max_gradient < 0.0001)") }, "The model is definitely not converged")
       print(OptRnd)
       capture.output(OptRnd, file = file.path(DateFile, "parameter_estimates.txt"))
-            
-      # Create MapDetails_List
-         MapDetails_List = FishStatsUtils::make_map_info( Region = Region, NN_Extrap = Spatial_List$PolygonList$NN_Extrap, Extrapolation_List = Extrapolation_List ) # Make this list before the save!!!!!
-         
+        
       # Optimization result- including the test of the range of Raw1 and Raw2 should be inside of min and max distance of between knot locations
       cat("\nnlminb() convergence (Zero indicates successful convergence):", Opt$convergence, "\n\nnlminb() message:", Opt$message, "\n\nnlminb() pdHess:", Opt$SD$pdHess, "\n\nAIC:", Opt$AIC, "\n\n")
       sink(paste0(DateFile, "Final_Convergence_Results.txt"))
@@ -576,10 +573,16 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
          # Range Raw1 and Raw2 should be inside of min and max distance of between knot locations (J. Thorson, pers. comm.)
          print(r(sort(c(Range_raw1 = Report$Range_raw1, Range_raw2 = Report$Range_raw2, minDist = min(dist( Spatial_List$loc_x )), maxDist = max(dist( Spatial_List$loc_x ))))))
       sink()
-     
+      
+      # Pre-save in case make_map_info() fails!
+      save(list = c(ls(), names(.GlobalEnv)), file = paste0(DateFile, "Image.RData")) # Save files inside the function also!!!!!! 
+      
+      # Create MapDetails_List
+         MapDetails_List = FishStatsUtils::make_map_info(Region = Region, Extrapolation_List = Extrapolation_List, spatial_list = Spatial_List, NN_Extrap = Spatial_List$PolygonList$NN_Extrap) # Make this list before the save!!!!!
+         
       setwd(HomeDir)
       
-      # Save the VAST run - early save - final save right at the end!
+      # Save the VAST run - with make_map_info() - final save right at the end!
       save(list = c(ls(), names(.GlobalEnv)), file = paste0(DateFile, "Image.RData")) # Save files inside the function also!!!!!!
       
      } # End runVAST
@@ -885,6 +888,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
 }
                       
                       
+
 
 
 
