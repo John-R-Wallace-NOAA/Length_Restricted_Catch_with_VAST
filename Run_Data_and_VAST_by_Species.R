@@ -29,6 +29,10 @@ SpList[[13]] <- list(SP = 'splitnose rockfish',  LenMaxAges = c(5, 10), LatMax =
 
 # Now have 2018 data, so no need for: dupYears = 2012 (until early in 2021)
 
+
+# Grab VAST.Length.Restricted.Catch from GitHub if not already downloaded.
+# JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
+
 DATA <- c(TRUE, FALSE)[2]
 
 # Rho: Structure for beta (only) over time: 0=None (default); 1=WhiteNoise; 2=RandomWalk; 3=Constant intercept; 4=Autoregressive, each year as random following AR1 process
