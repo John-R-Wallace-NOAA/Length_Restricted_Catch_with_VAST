@@ -647,9 +647,10 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
           
           # YearlyResultsFigures(SP.Results.Dpth = SP.Results.Dpth)
           # eastLongitude = -160.5 # OLD
+          # Warning: if the argument SP.Results.Dpth. = NULL, but 'SP.Results.Dpth' is found, that 'SP.Results.Dpth' is used. Delete or rename the file and rerun to have it recalculated.
           SP.Results.Dpth <- JRWToolBox::YearlyResultsFigures(spLongName. = spLongName, spShortName. = spShortName, longitudeDelta = 2.6, Index = IndexTable, SP.Results.Dpth = NULL, 
               MapDetails_List = MapDetails_List, Report = Report, Opt = Opt, DateFile = DateFile, Year_Set = Year_Set, Years2Include = Years2Include, Ages = Ages, LenMin = LenMin, LenMax = LenMax, 
-              strata.limits = strata.limits, HomeDir = HomeDir, rhoConfig. = rhoConfig, title = TRUE)
+              strata.limits = strata.limits, HomeDir = HomeDir, rhoConfig. = rhoConfig, Graph.Dev = "png", title = TRUE)
               
           stopifnot(exists('SP.Results.Dpth'))
           
@@ -888,6 +889,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
 }
                       
                       
+
 
 
 
