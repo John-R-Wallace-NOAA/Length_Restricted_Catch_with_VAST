@@ -2,7 +2,7 @@
  
 VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = NULL, spShortName = NULL, Top.Prct = 15, Top.Years = 6, warehouseDownload = TRUE, dupYears = NULL, 
      LenNum = if(is.null(LenMaxAges)) NULL else length(LenMaxAges), LenMaxAges = NULL, LenMax = max(LenMaxAges), LatMax = NULL, 
-     LatMin = NULL, DepMin = 50.0, DepMax = NULL, Knots = 600, rhoConfig = 0, Threads = 3, AS = TRUE, DV = TRUE, firstYear = 2003, lastYear = 3000, Bubble.Size = 0.005, badWts = NULL, RawDataPlots = TRUE,
+     LatMin = NULL, DepMin = 50.0, DepMax = NULL, Knots = 600, rhoConfig = 0, Threads = 3, AS = TRUE, DV = TRUE, Pass = FALSE, firstYear = 2003, lastYear = 3000, Bubble.Size = 0.005, badWts = NULL, RawDataPlots = TRUE,
      allAgesBubble = FALSE, runVAST = TRUE, runDiagnostics = runVAST, Extra.Group.Size = NULL) {                                    
 
    # AS = "Area Swept"; DV = "Depth covariate" 
@@ -141,7 +141,9 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
 
    # CW = Coast Wide; NCV = No Covariate; ; DV = Depth Covariate; DataSource is data source used; Region is region used; AS = Area Swept; BM = Biomass; NV = No Vessel; NY = No Year;  vX is version X
    # LM = Length Max; 
-   if(DV & AS) (DateFile <- paste0(HomeDir, Sys.Date(), '_', spShortName, '_DV_', DataSource, '_LM', LenMax, '_', substring(Version, 6), '_Rho=', rhoConfig, '_AS_nx=', n_x, '/'))  # nx Mesh method
+   if(DV & AS & !Pass) (DateFile <- paste0(HomeDir, Sys.Date(), '_', spShortName, '_DV_', DataSource, '_LM', LenMax, '_', substring(Version, 6), '_Rho=', rhoConfig, '_AS_nx=', n_x, '/'))  # nx Mesh method
+   if(DV & AS & Pass) (DateFile <- paste0(HomeDir, Sys.Date(), '_', spShortName, '_DV_', DataSource, '_LM', LenMax, '_', substring(Version, 6), '_Rho=', rhoConfig, '_AS_P_nx=', n_x, '/'))  # nx Mesh method
+   
    # if(DV & !AS ) (DateFile <- paste0(HomeDir, Sys.Date(), '_', spShortName, '_DV_', DataSource, '_LM', LenMax, '_', substring(Version, 6), '_BM_nx=', n_x, '/'))  # nx Mesh method
    if(!DV & AS) (DateFile <- paste0(HomeDir, Sys.Date(), '_', spShortName, '_', DataSource, '_LM', LenMax, '_', substring(Version, 6), '_Rho=', rhoConfig, '_AS_nx=', n_x, '/'))  # nx Mesh method
    if(!DV & !AS) (DateFile <- paste0(HomeDir, Sys.Date(), '_', spShortName, '_', DataSource, '_LM', LenMax, '_', substring(Version, 6), '_Rho=', rhoConfig, '_BM_nx=', n_x, '/')) # nx Mesh method
@@ -525,14 +527,26 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
              # depthCovar <- SpatialDeltaGLMM::format_covariates(knotsLatLong$Lat, knotsLatLong$Long, matrix(as.numeric(gl(13, nrow(knotsLatLong))), nrow=nrow(knotsLatLong)) + 2002, 
              #             knotsDepth, Extrapolation_List, Spatial_List)
              
-          if(AS)
-              TmbData <- VAST::make_data(Version=Version, FieldConfig=FieldConfig, OverdispersionConfig=OverdispersionConfig, RhoConfig=RhoConfig, ObsModel=ObsModel, 
+          if(AS) {
+		    if(Pass) 
+			  TmbData <- VAST::make_data(Version=Version, FieldConfig=FieldConfig, OverdispersionConfig=OverdispersionConfig, RhoConfig=RhoConfig, ObsModel=ObsModel, 
                  c_i=rep(0, nrow(DatG)), b_i = DatG$Total_sp_wt_LR_kg, a_i = if(AS) DatG$Area_Swept_ha else rep(1, nrow(DatG)), v_i=as.numeric(factor(DatG$Vessel)) - 1, 
                  spatial_list = Spatial_List, s_i=Spatial_List$knot_i - 1, t_i=DatG$Year, a_xl =Spatial_List$a_xl, MeshList=Spatial_List$MeshList, GridList=Spatial_List$GridList, 
-                 X_xtp = depthCovar, Method=Spatial_List$Method, Options=Options )             
+                 X_xtp = depthCovar, Method=Spatial_List$Method, Options=Options )
+				 
+			if(!Pass) {
+			  DatG$Pass <- DatG$Pass - 1.5 
+              TmbData <- VAST::make_data(Version=Version, FieldConfig=FieldConfig, OverdispersionConfig=OverdispersionConfig, RhoConfig=RhoConfig, ObsModel=ObsModel, 
+                 c_i=rep(0, nrow(DatG)), b_i = DatG$Total_sp_wt_LR_kg, a_i = if(AS) DatG$Area_Swept_ha else rep(1, nrow(DatG)), v_i=as.numeric(factor(DatG$Vessel)) - 1, 
+                 spatial_list = Spatial_List, s_i=Spatial_List$knot_i - 1, t_i=DatG$Year, a_xl =Spatial_List$a_xl, Q_ik = matrix(DatG$Pass, ncol = 1), MeshList=Spatial_List$MeshList, GridList=Spatial_List$GridList, 
+                 X_xtp = depthCovar, Method=Spatial_List$Method, Options=Options )
+		    }
+         }				 
        }    
-          
-       
+   
+
+     
+     
      
       # Make TMB object
       TmbList = VAST::make_model(TmbData=TmbData, RunDir=DateFile, Version=Version, RhoConfig=RhoConfig, loc_x=Spatial_List$loc_x)
@@ -887,6 +901,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
 }
                       
                       
+
 
 
 
