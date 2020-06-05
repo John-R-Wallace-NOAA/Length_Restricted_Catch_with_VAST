@@ -31,12 +31,13 @@ SpList[[13]] <- list(SP = 'splitnose rockfish',  LenMaxAges = c(5, 10), LatMax =
 
 
 # Grab VAST.Length.Restricted.Catch from GitHub if not already downloaded.
-# JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
+ JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
 
 DATA <- c(TRUE, FALSE)[2]
+PASS <- c(TRUE, FALSE)[1]
 
 # Rho: Structure for beta (only) over time: 0=None (default); 1=WhiteNoise; 2=RandomWalk; 3=Constant intercept; 4=Autoregressive, each year as random following AR1 process
- for ( j in c(0,3)) {  # j is rho
+ for ( j in c(0,3)[2]) {  # j is rho
    for ( i in 1:13) {  # i is species
    
      if(DATA)
@@ -45,7 +46,7 @@ DATA <- c(TRUE, FALSE)[2]
         
      else
         try(VAST.Length.Restricted.Catch( SpList[[i]]$SP, Top.Prct = 15, Top.Years = 6, warehouseDownload = FALSE, LenMaxAges = SpList[[i]]$LenMaxAges, LatMax = SpList[[i]]$LatMax,
-               LatMin = SpList[[i]]$LatMin , DepMin = SpList[[i]]$DepMin, DepMax = SpList[[i]]$DepMax, RawDataPlots = FALSE, runVAST = TRUE, runDiagnostics = TRUE, allAgesBubble = FALSE, 
+               LatMin = SpList[[i]]$LatMin , DepMin = SpList[[i]]$DepMin, DepMax = SpList[[i]]$DepMax, RawDataPlots = FALSE, Pass = PASS, runVAST = TRUE, runDiagnostics = TRUE, allAgesBubble = FALSE, 
                rhoConfig = j, Extra.Group.Size = SpList[[i]]$Extra.Group.Size))
    }
  
@@ -153,3 +154,4 @@ for ( jj in 2:13) {
     
     
  
+
