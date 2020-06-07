@@ -38,7 +38,7 @@ SpList[[13]]
      JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
      load('SpList.RData')
       
-     DATA <- c(TRUE, FALSE)[2]
+     DATA <- c(TRUE, FALSE)[2]  # Need run DATA = TRUE first to download the data
      PASS <- c(TRUE, FALSE)[1]
       
      if(DATA)
