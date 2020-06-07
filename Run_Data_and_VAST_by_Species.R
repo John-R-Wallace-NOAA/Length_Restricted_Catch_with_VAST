@@ -25,31 +25,34 @@ SpList[[11]] <- list(SP = 'longspine thornyhead',  LenMaxAges = c(5, 6, 7), LatM
 SpList[[12]] <- list(SP = 'darkblotched rockfish',  LenMaxAges = c(9, 15), LatMax = 48.5, LatMin = 37.5, DepMin = 80, DepMax = 240, LM = 15) # Lat: 37.8 - 48.5; North of San Fran.
 SpList[[13]] <- list(SP = 'splitnose rockfish',  LenMaxAges = c(5, 10), LatMax = 48.5, LatMin = 32.5, DepMin = 65, DepMax = 460, LM = 10) # # Lat: 32.5 - 48.5; Near Mex. border
 
-# SpList
+save(SpList, file = 'SpList.RData') 
+SpList[[13]]
 
 # Now have 2018 data, so no need for: dupYears = 2012 (until early in 2021)
 
-
-# Grab VAST.Length.Restricted.Catch from GitHub if not already downloaded.
- JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
-
-DATA <- c(TRUE, FALSE)[2]
-PASS <- c(TRUE, FALSE)[1]
-
 # Rho: Structure for beta (only) over time: 0=None (default); 1=WhiteNoise; 2=RandomWalk; 3=Constant intercept; 4=Autoregressive, each year as random following AR1 process
+
  for ( j in c(0,3)[2]) {  # j is rho
    for ( i in 1:13) {  # i is species
-   
+      
+     JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
+     load('SpList.RData')
+      
+     DATA <- c(TRUE, FALSE)[2]
+     PASS <- c(TRUE, FALSE)[1]
+      
      if(DATA)
        VAST.Length.Restricted.Catch( SpList[[i]]$SP, Top.Prct = 15, Top.Years = 6, warehouseDownload = TRUE, LenMaxAges = SpList[[i]]$LenMaxAges, RawDataPlots = TRUE, runVAST = FALSE, 
             LatMax = SpList[[i]]$LatMax,  LatMin = SpList[[i]]$LatMin , DepMin = SpList[[i]]$DepMin, DepMax = SpList[[i]]$DepMax)
         
-     else
+     else {
         try(VAST.Length.Restricted.Catch( SpList[[i]]$SP, Top.Prct = 15, Top.Years = 6, warehouseDownload = FALSE, LenMaxAges = SpList[[i]]$LenMaxAges, LatMax = SpList[[i]]$LatMax,
                LatMin = SpList[[i]]$LatMin , DepMin = SpList[[i]]$DepMin, DepMax = SpList[[i]]$DepMax, RawDataPlots = FALSE, Pass = PASS, runVAST = TRUE, runDiagnostics = TRUE, allAgesBubble = FALSE, 
                rhoConfig = j, Extra.Group.Size = SpList[[i]]$Extra.Group.Size))
-   }
- 
+        
+        rm(list = ls()) 
+    }
+  }
 }
    
 
