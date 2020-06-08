@@ -13,4 +13,4 @@ devtools::install_github('James-Thorson/FishStatsUtils', ref = '437341d55a232410
 
 devtools::install_github('james-thorson/VAST', ref = 'c2c43293421f4f2f257ecd4033211ab289553357')  # R 3.4.3; ; 2019-06-10 17:15:17 UTC; unix
 
-(As of 5 Jum 2020, on Tantalus (Linux server) need to use R ver 3.4.5 (/opt/microsoft/ropen/3.4.3/lib64/R/bin/R) to get a compatible GDAL app that works with the rgdal package (ver 1.4-4).)
+(As of 5 June 2020, on Tantalus (a Linux server) R ver 3.4.5 (/opt/microsoft/ropen/3.4.3/lib64/R/bin/R) is needed to access a compatible GDAL app that works with the rgdal package (ver 1.4-4).)
