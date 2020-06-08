@@ -15,15 +15,12 @@ devtools::install_github('james-thorson/VAST', ref = 'c2c43293421f4f2f257ecd4033
 
 (As of 5 June 2020, on Tantalus (a Linux server) R ver 3.4.5 (/opt/microsoft/ropen/3.4.3/lib64/R/bin/R) is needed to access a compatible GDAL app that works with the rgdal package (ver 1.4-4).)
 
-INLA package info from CRAN:
-Package:           INLA
-Type:              Package
-Title:             Full Bayesian Analysis of Latent Gaussian Models using Integrated Nested Laplace Approximations
+      Package:           INLA
+      Type:              Package
+      Title:             Full Bayesian Analysis of Latent Gaussian Models using Integrated Nested Laplace Approximations
+      Version:           18.07.12
+      Date:              2018-07-12 (Version_18.07.12)
+      Built:             R 3.4.3; ; 2019-06-10 17:12:59 UTC; unix
+      
 
-Version:           18.07.12
-Date:              2018-07-12 (Version_18.07.12)
-Author:            Havard Rue [cre, aut], Finn Lindgren [aut], Daniel Simpson [aut], Sara Martino [aut], Elias Teixeira Krainski [aut], Haakon
-                   Bakka [aut], Andrea Riebler [aut], Geir-Arne Fuglstad [aut], Martin Modrak [ctb]
-Maintainer:        Havard Rue <hrue@r-inla.org>
-Built:             R 3.4.3; ; 2019-06-10 17:12:59 UTC; unix
 
