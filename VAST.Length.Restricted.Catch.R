@@ -643,9 +643,12 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
           QQ <- FishStatsUtils::plot_quantile_diagnostic( TmbData=TmbData, Report=Report, DateFile = DateFile, FileName_PP="Posterior_Predictive.jpg", FileName_Phist = "Posterior_Predictive-Histogram.jpg",
                                        FileName_QQ = "Q-Q_plot.jpg", FileName_Qhist = "Q-Q_hist.jpg") 
          
-          # Residuals,  not sure if needed now: mar=c(0,0,2,0), oma=c(3.5,3.5,0,0), cex=1.8) 
-           try( FishStatsUtils::plot_residuals(Lat_i=Data_Geostat[,'Lat'], Lon_i=Data_Geostat[,'Lon'], Report = Report, Q=QQ, spatial_list = Spatial_List, extrapolation_list = Extrapolation_List, TmbData=TmbData,  
-                working_dir=DateFile, Year_Set=Year_Set, Years2Include=Years2Include) )
+          # Residuals
+           try( FishStatsUtils::plot_residuals(Lat_i=Data_Geostat[,'Lat'], Lon_i=Data_Geostat[,'Lon'], TmbData=TmbData, Report=Report, Q=QQ, savedir=DateFile, MappingDetails=MapDetails_List[["MappingDetails"]],
+              PlotDF=MapDetails_List[["PlotDF"]], MapSizeRatio=MapDetails_List[["MapSizeRatio"]], Xlim=MapDetails_List[["Xlim"]], Ylim=MapDetails_List[["Ylim"]], FileName=DateFile,
+              Year_Set=Year_Set, Years2Include=Years2Include, Rotate=MapDetails_List[["Rotate"]], Cex=MapDetails_List[["Cex"]], Legend=MapDetails_List[["Legend"]],
+              zone=MapDetails_List[["Zone"]], mar=c(0,0,2,0), oma=c(3.5,3.5,0,0), cex=1.8) )
+ )
         
           stopifnot(exists('IndexTable'), exists('RangeShifts'), exists('QQ'))
           
