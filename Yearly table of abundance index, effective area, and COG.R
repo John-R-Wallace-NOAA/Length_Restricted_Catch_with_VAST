@@ -9,7 +9,8 @@
 # COG.LongLat <- UTM.to.LatLong(1000*data.frame(Eastings = RangeShifts$COG_Table[1:13, 'COG_hat'], Northings = RangeShifts$COG_Table[14:26, 'COG_hat']))
 # 
 # 
-# Year.Index.EffArea.COG <- data.frame(Year = IndexTable$Year, Biomass.Index.mt = IndexTable$Estimate_metric_tons, Biomass.Index.SE.mt = IndexTable$SD_mt,  EffectiveArea = RangeShifts$EffectiveArea_Table[, 'EffectiveArea'], EffectiveArea.SE = RangeShifts$EffectiveArea_Table[, 'SE'], 
+# Year.Index.EffArea.COG <- data.frame(Year = IndexTable$Year, Biomass.Index.mt = IndexTable$Estimate_metric_tons, Biomass.Index.SE.mt = IndexTable$SD_mt,  
+#       EffectiveArea = RangeShifts$EffectiveArea_Table[, 'EffectiveArea'], EffectiveArea.SE = RangeShifts$EffectiveArea_Table[, 'SE'], 
 #       COG.Eastings = RangeShifts$COG_Table[1:13, 'COG_hat'], COG.Eastings.SE = RangeShifts$COG_Table[1:13, 'SE'], COG.Northings = RangeShifts$COG_Table[14:26, 'COG_hat'], 
 #       COG.Northings.SE = RangeShifts$COG_Table[14:26, 'SE'], COG.Long = COG.LongLat$Long, COG.Lat = COG.LongLat$Lat)
 #  
