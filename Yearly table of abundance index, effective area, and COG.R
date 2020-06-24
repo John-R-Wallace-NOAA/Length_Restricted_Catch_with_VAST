@@ -18,7 +18,8 @@
 
 
 
-# Year.Index.EffArea.COG is now saved at the bottom of: VAST.Length.Restricted.Catch.R and so in the directory of each species run
+# Year.Index.EffArea.COG is now saved at the bottom of: VAST.Length.Restricted.Catch.R and so can be found in the directory of each species run.
+
 
 # For Nick
 
