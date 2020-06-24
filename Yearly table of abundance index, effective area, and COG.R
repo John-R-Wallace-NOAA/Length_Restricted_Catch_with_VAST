@@ -2,20 +2,23 @@
 
 # Yearly table of abundance index, effective area, and COG
 
-IndexTable <- SpatialDeltaGLMM::PlotIndex_Fn(DirName=DateFile, TmbData=TmbData, Sdreport=Opt$SD, Year_Set=sort(unique(DatG$Year)), strata_names=strata.limits[,1], use_biascorr=TRUE,
-                                    width = 11, height = 8)$Table
+# IndexTable <- SpatialDeltaGLMM::PlotIndex_Fn(DirName=DateFile, TmbData=TmbData, Sdreport=Opt$SD, Year_Set=sort(unique(DatG$Year)), strata_names=strata.limits[,1], use_biascorr=TRUE,
+#                                     width = 11, height = 8)$Table
+# 
+# RangeShifts <-  SpatialDeltaGLMM::Plot_range_shifts(Sdreport=Opt$SD, Report=Report, TmbData=TmbData, Znames=colnames(TmbData$Z_xm), PlotDir=DateFile)
+# COG.LongLat <- UTM.to.LatLong(1000*data.frame(Eastings = RangeShifts$COG_Table[1:13, 'COG_hat'], Northings = RangeShifts$COG_Table[14:26, 'COG_hat']))
+# 
+# 
+# Year.Index.EffArea.COG <- data.frame(Year = IndexTable$Year, Biomass.Index.mt = IndexTable$Estimate_metric_tons, Biomass.Index.SE.mt = IndexTable$SD_mt,  EffectiveArea = RangeShifts$EffectiveArea_Table[, 'EffectiveArea'], EffectiveArea.SE = RangeShifts$EffectiveArea_Table[, 'SE'], 
+#       COG.Eastings = RangeShifts$COG_Table[1:13, 'COG_hat'], COG.Eastings.SE = RangeShifts$COG_Table[1:13, 'SE'], COG.Northings = RangeShifts$COG_Table[14:26, 'COG_hat'], 
+#       COG.Northings.SE = RangeShifts$COG_Table[14:26, 'SE'], COG.Long = COG.LongLat$Long, COG.Lat = COG.LongLat$Lat)
+#  
+# save(Year.Index.EffArea.COG, file=paste0(DateFile, "Year.Index.EffArea.COG.RData"))
 
-RangeShifts <-  SpatialDeltaGLMM::Plot_range_shifts(Sdreport=Opt$SD, Report=Report, TmbData=TmbData, Znames=colnames(TmbData$Z_xm), PlotDir=DateFile)
-COG.LongLat <- UTM.to.LatLong(1000*data.frame(Eastings = RangeShifts$COG_Table[1:13, 'COG_hat'], Northings = RangeShifts$COG_Table[14:26, 'COG_hat']))
 
 
-Year.Index.EffArea.COG <- data.frame(Year = IndexTable$Year, Biomass.Index.mt = IndexTable$Estimate_metric_tons, Biomass.Index.SE.mt = IndexTable$SD_mt,  EffectiveArea = RangeShifts$EffectiveArea_Table[, 'EffectiveArea'], EffectiveArea.SE = RangeShifts$EffectiveArea_Table[, 'SE'], 
-      COG.Eastings = RangeShifts$COG_Table[1:13, 'COG_hat'], COG.Eastings.SE = RangeShifts$COG_Table[1:13, 'SE'], COG.Northings = RangeShifts$COG_Table[14:26, 'COG_hat'], 
-      COG.Northings.SE = RangeShifts$COG_Table[14:26, 'SE'], COG.Long = COG.LongLat$Long, COG.Lat = COG.LongLat$Lat)
- 
-save(Year.Index.EffArea.COG, file=paste0(DateFile, "Year.Index.EffArea.COG.RData"))
 
-
+# Year.Index.EffArea.COG is now saved at the bottom of: VAST.Length.Restricted.Catch.R and so in the directory of each species run
 
 # For Nick
 
