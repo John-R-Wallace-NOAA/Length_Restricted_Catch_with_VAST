@@ -29,6 +29,7 @@ library(JRWToolBox)
 
 # JRWToolBox::lib("John-R-Wallace/Imap")
 
+# For each species:
 load('Year.Index.EffArea.COG.RData')
 
 
