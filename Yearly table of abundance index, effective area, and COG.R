@@ -27,7 +27,7 @@
 # devtools::install_github("John-R-Wallace/JRWToolBox")
 library(JRWToolBox)
 
-# JRWToolBox::lib("John-R-Wallace/Imap")
+JRWToolBox::lib("John-R-Wallace/Imap")
 
 # For each species:
 load('Year.Index.EffArea.COG.RData')
