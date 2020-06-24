@@ -20,6 +20,9 @@ save(Year.Index.EffArea.COG, file=paste0(DateFile, "Year.Index.EffArea.COG.RData
 # For Nick
 
 # devtools::install_github("John-R-Wallace/JRWToolBox")
+library(JRWToolBox)
+
+# JRWToolBox::lib("John-R-Wallace/Imap")
 
 load('Year.Index.EffArea.COG.RData')
 
@@ -37,11 +40,11 @@ plot(Year, COG.Lat, type='o')
 
 dev.new()
 par(mfrow = c(3,2))
-plot.lowess.lsfit(Biomass.Index.mt, EffectiveArea)
-plot.lowess.lsfit(Biomass.Index.mt, COG.Long)
-plot.lowess.lsfit(Biomass.Index.mt, COG.Lat)
-plot.lowess.lsfit(EffectiveArea, COG.Long)
-plot.lowess.lsfit(EffectiveArea, COG.Lat)
+JRWToolBox::plot.lowess.lsfit(Biomass.Index.mt, EffectiveArea)
+JRWToolBox::plot.lowess.lsfit(Biomass.Index.mt, COG.Long)
+JRWToolBox::plot.lowess.lsfit(Biomass.Index.mt, COG.Lat)
+JRWToolBox::plot.lowess.lsfit(EffectiveArea, COG.Long)
+JRWToolBox::plot.lowess.lsfit(EffectiveArea, COG.Lat)
 plot(COG.Long, COG.Lat)
 
 
