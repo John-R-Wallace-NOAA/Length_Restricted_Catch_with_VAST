@@ -648,8 +648,7 @@ VAST.Length.Restricted.Catch <- function(spLongName = 'petrale sole', Species = 
               PlotDF=MapDetails_List[["PlotDF"]], MapSizeRatio=MapDetails_List[["MapSizeRatio"]], Xlim=MapDetails_List[["Xlim"]], Ylim=MapDetails_List[["Ylim"]], FileName=DateFile,
               Year_Set=Year_Set, Years2Include=Years2Include, Rotate=MapDetails_List[["Rotate"]], Cex=MapDetails_List[["Cex"]], Legend=MapDetails_List[["Legend"]],
               zone=MapDetails_List[["Zone"]], mar=c(0,0,2,0), oma=c(3.5,3.5,0,0), cex=1.8) )
- )
-        
+    
           stopifnot(exists('IndexTable'), exists('RangeShifts'), exists('QQ'))
           
           graphics.off()
