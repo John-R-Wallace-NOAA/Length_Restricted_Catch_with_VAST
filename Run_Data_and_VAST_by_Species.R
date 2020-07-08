@@ -33,9 +33,9 @@ SpList[[13]]
 # Rho: Structure for beta (only) over time: 0=None (default); 1=WhiteNoise; 2=RandomWalk; 3=Constant intercept; 4=Autoregressive, each year as random following AR1 process
 
  for ( j in c(0,3)[2]) {  # j is rho
-   for ( i in 1:13) {  # i is species
+   for ( i in 13) {  # i is species
       
-     JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
+     rgit::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
      load('SpList.RData')
       
      DATA <- c(TRUE, FALSE)[2]  # Need run DATA = TRUE first to download the data
@@ -58,7 +58,7 @@ SpList[[13]]
 
 # See page 10 of the VAST manual for information on rho options:
  
-JRWToolBox::gitAFile("https://github.com/James-Thorson/VAST/blob/master/manual/VAST_model_structure.pdf", "pdf")
+rgit::gitAFile("https://github.com/James-Thorson/VAST/blob/master/manual/VAST_model_structure.pdf", "pdf")
   
 
   
@@ -66,9 +66,9 @@ JRWToolBox::gitAFile("https://github.com/James-Thorson/VAST/blob/master/manual/V
 
 # ---------- Prelimininary Steps ---------  
   
-JRWToolBox::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
+rgit::gitAFile("John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/VAST.Length.Restricted.Catch.R", show = F)
 gitEdit(VAST.Length.Restricted.Catch, 'John-R-Wallace-NOAA/Length_Restricted_Catch_with_VAST/master/')
-gitEdit(YearlyResultsFigures)  # From JRWToolBox
+gitEdit(YearlyResultsFigures)  # From rgit package
 gitEdit(plotGIS, "John-R-Wallace-NOAA/Imap/master/R/") # From Imap
 
 
@@ -157,4 +157,5 @@ for ( jj in 2:13) {
     
     
  
+
 
