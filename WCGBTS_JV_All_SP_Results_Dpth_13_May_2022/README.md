@@ -12,7 +12,7 @@ The data for each species (see attached) looks like:
     3 -4.285058 -7.106127 -6.830975 -4.971122 -7.217141 -8.433116 -6.170058 -8.276747 -7.526347
 
 x and y are Eastings and Northings, X and Y are longitude and latitude, and the years of data are in logged (kilograms per square kilometer).
-So after exponentiation, convert to grams per hectare used in the paper by multiplying by ten, since 1000 (gram to kg) divided by 100 (kilometer2 to hectare) = 10
+So after exponentiation, convert to grams per hectare used in the paper by multiplying by ten, since 1000 (gram to kg) divided by 100 (kilometer^2 to hectare) = 10
 
 Using Sablefish as an example:
 
