@@ -1,7 +1,4 @@
 
-
-I had to make a loop to extract this data from the saved VAST runs, but here we are.
-
 The data for each species (see attached) looks like:
 
              x        y         X        Y    X2003     X2004     X2005     X2006     X2007     X2008     X2009
