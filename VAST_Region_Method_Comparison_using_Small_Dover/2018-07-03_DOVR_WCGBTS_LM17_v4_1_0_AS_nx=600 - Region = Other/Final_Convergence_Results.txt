@@ -1,0 +1,14 @@
+
+nlminb() convergence (Zero indicates successful convergence): 
+
+nlminb() message: 
+
+nlminb() pdHess: TRUE 
+
+AIC: 839.3643 
+
+
+Range Raw1 and Raw2 should be inside of min and max distance of between knot locations
+
+    minDist  Range_raw2  Range_raw1     maxDist 
+   3.549148   19.974058  128.027918 1770.629059 
