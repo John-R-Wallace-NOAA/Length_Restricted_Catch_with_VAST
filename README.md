@@ -1,6 +1,6 @@
 # Length_Restricted_Catch_with_VAST
 
-Figures for the paper: [Spatio-temporal patterns in juvenile habitat for 13 groundfishes in the California Current Ecosystem](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0237996)
+This repository accompanies the paper by Tolimieri, Wallace, and Haltuch (2020): [Spatio-temporal patterns in juvenile habitat for 13 groundfishes in the California Current Ecosystem](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0237996)
 
 Using VAST on Length Restricted Catch to define Essential Fish Habitat (EFH)
 
